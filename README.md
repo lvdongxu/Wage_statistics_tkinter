@@ -2,7 +2,7 @@
 
 ## Developer: Dongxu Lv
 
-## Developer Information
+### Developer Information
 
 - IEEE Student Member
 
