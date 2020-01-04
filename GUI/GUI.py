@@ -13,12 +13,14 @@
 import tkinter as tk
 
 class Person:
-    def __init__(self, _frame):
+    def __init__(self, _frame, name):
         '''
         @description: 
         @param : 
         @return: 
         '''
+        self.name = name
+        self.list = []
         # 这里是上午班，下午班和加班次数的整数变量定义
         self.morning_time = tk.IntVar() 
         self.morning_time.set(0)
@@ -127,21 +129,30 @@ class Person:
         cur_extra_time = self.extra_time.get()
         cur_wage = cur_morning_time * 75 + cur_afternoon_time * 100 + cur_extra_time * 50
         self.wage.set(cur_wage)
+        # 类信息打印
+        self.list = [self.name, self.morning_time.get(), self.afternoon_time.get(), self.extra_time.get(), self.wage.get()]
 
 
-root = tk.Tk()
-root.title('文科处助管工资统计')
-# root.geometry('400x500')
+if __name__ == '__main__':
+    root = tk.Tk()
+    root.title('文科处助管工资统计')
+    # root.geometry('400x500')
 
-name = ['吕东旭','王晓情','李启开']
-frame_list = []
-for name_i in name:
-    _frame = tk.LabelFrame(text=name_i)
-    Person(_frame)
-    _frame.pack(side=tk.TOP)
+    name = ['吕东旭','王晓情','李启开']
+    frame_list = []
+    for name_i in name:
+        _frame = tk.LabelFrame(text=name_i)
+        _frame_class = Person(_frame, name_i)
+        frame_list.append(_frame_class)
+        _frame.pack(side=tk.TOP)
 
+    def final_statistic():
+        for _frame_class in frame_list:
+            print(_frame_class.list)
 
-root.mainloop()
+    tk.Button(root, text="最终统计", command=final_statistic, bg='Red', fg='white').pack(side=tk.TOP, fill=tk.X)
+
+    root.mainloop()
 
 
 
