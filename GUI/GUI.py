@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 '''
 @File    :   GUI.py
-@morning_time    :   2020/01/01 18:42:20
+@Time    :   2020/01/01 18:42:20
 @Author  :   Dongxu Lv 
 @Version :   0.1
 @Contact :   lvdongxu@sjtu.edu.cn
