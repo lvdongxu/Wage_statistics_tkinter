@@ -130,8 +130,9 @@ class Person:
         cur_wage = cur_morning_time * 75 + cur_afternoon_time * 100 + cur_extra_time * 50
         self.wage.set(cur_wage)
         # 类信息打印
+        dict_key = ['姓名', '上午值班次数', '下午值班次数', '加班小时数', '总酬金']
         self.list = [self.name, self.morning_time.get(), self.afternoon_time.get(), self.extra_time.get(), self.wage.get()]
-
+        
 
 if __name__ == '__main__':
     root = tk.Tk()

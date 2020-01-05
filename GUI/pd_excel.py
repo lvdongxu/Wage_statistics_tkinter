@@ -17,6 +17,13 @@ sys.stdout=io.TextIOWrapper(sys.stdout.buffer,encoding='utf8')#改变默认输�
 
 
 df = pd.read_excel('D:\\onedrive\\文科处助管\\工资统计\\wage_11.16_12.15.xls')
+height, width = df.shape
+print(df.iloc[3,1])
 
-data = df.head()
-print("获取到的值是:\n{0}".format(data))
+dict_key = ['姓名', '上午值班次数', '下午值班次数', '加班小时数', '总酬金']
+dict_value = 
+# data_list = []
+# for _h in range(0,height):
+#     _data_row = []
+#     for _w in range(1, width+1):
+#         _data_row.append()
