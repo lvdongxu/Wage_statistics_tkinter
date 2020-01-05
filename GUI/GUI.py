@@ -140,9 +140,9 @@ if __name__ == '__main__':
 
     name = ['吕东旭','王晓情','李启开']
     frame_list = []
-    for name_i in name:
-        _frame = tk.LabelFrame(text=name_i)
-        _frame_class = Person(_frame, name_i)
+    for _name in name:
+        _frame = tk.LabelFrame(text=_name)
+        _frame_class = Person(_frame, _name)
         frame_list.append(_frame_class)
         _frame.pack(side=tk.TOP)
 
