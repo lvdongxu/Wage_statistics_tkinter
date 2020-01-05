@@ -11,6 +11,8 @@
 
 # here put the import lib
 import tkinter as tk
+import pandas as pd
+import wage_excel
 
 class Person:
     def __init__(self, _frame, name):
@@ -21,6 +23,7 @@ class Person:
         '''
         self.name = name
         self.list = []
+        self.__dict__ = {}
         # 这里是上午班，下午班和加班次数的整数变量定义
         self.morning_time = tk.IntVar() 
         self.morning_time.set(0)
@@ -132,13 +135,12 @@ class Person:
         # 类信息打印
         dict_key = ['姓名', '上午值班次数', '下午值班次数', '加班小时数', '总酬金']
         self.list = [self.name, self.morning_time.get(), self.afternoon_time.get(), self.extra_time.get(), self.wage.get()]
-        
+        self.__dict__ = dict(zip(dict_key, self.list))
 
 if __name__ == '__main__':
     root = tk.Tk()
     root.title('文科处助管工资统计')
-    # root.geometry('400x500')
-
+    
     name = ['吕东旭','王晓情','李启开']
     frame_list = []
     for _name in name:
@@ -147,12 +149,28 @@ if __name__ == '__main__':
         frame_list.append(_frame_class)
         _frame.pack(side=tk.TOP)
 
+    # excel路径判断
+    lab_or_laptop  = 0
+    git_path       = '/Wage_statistics_tkinter/GUI/'
+    lab_path       = 'F:/PythonProject'
+    laptop_path    = 'F:/Wenkechu_Wage_GUI'
+    pattern_path   = 'wage_pattern.xls'
+    new_excel_path = 'wage_new.xls'
+    rd_path        = lab_path+git_path+pattern_path if lab_or_laptop == 1 else laptop_path+git_path+pattern_path
+    wr_path        = lab_path+git_path+new_excel_path if lab_or_laptop == 1 else laptop_path+git_path+new_excel_path
+    
+    # 统计Button函数
     def final_statistic():
+        '''
+        @description: 最终统计Button的指令函数
+        @param : 无输入参数
+        @return: 没有返回值
+        '''
         for _frame_class in frame_list:
             print(_frame_class.list)
 
     tk.Button(root, text="最终统计", command=final_statistic, bg='Red', fg='white').pack(side=tk.TOP, fill=tk.X)
-
+    
     root.mainloop()
 
 
