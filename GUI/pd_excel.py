@@ -16,16 +16,16 @@ import sys
 import io
 sys.stdout=io.TextIOWrapper(sys.stdout.buffer,encoding='utf8')#改变默认输出的标准编码
 
-df = pd.read_excel('F:/Wenkechu_Wage_GUI/Wage_statistics_tkinter/GUI/wage_pattern.xls') # 笔记本工资表路径
-# df = pd.read_excel('F:/PythonProject/Wage_statistics_tkinter/GUI/wage_pattern.xls') # 实验室主机工资表路径
+# df = pd.read_excel('F:/Wenkechu_Wage_GUI/Wage_statistics_tkinter/GUI/wage_pattern.xls') # 笔记本工资表路径
+df = pd.read_excel('F:/PythonProject/Wage_statistics_tkinter/GUI/wage_pattern.xls') # 实验室主机工资表路径
 height, width = df.shape
 # print(df.iloc[3,1])
-print(list(df['姓名']))
+print(df)
 
-# dict_key = ['姓名', '上午值班次数', '下午值班次数', '加班小时数', '总酬金']
-# dict_value = ['王晓情', 2, 3, 4, 5]
-# p = dict(zip(dict_key, dict_value))
+dict_key = ['姓名', '上午值班次数', '下午值班次数', '加班小时数', '总酬金']
+dict_value = ['王晓情', 2, 3, 4, 5]
+p = dict(zip(dict_key, dict_value))
 # print(p)
 # 
-# df['加班小时数'][df['姓名'] == '王晓情'] = p['加班小时数']
-# df.to_excel('F:/PythonProject/Wage_statistics_tkinter/GUI/wage_11.16_12.15.xls', sheet_name='Sheet1', index=True, header=True)
+df['加班小时数'][df['姓名'] == '王晓情'] = p['加班小时数']
+df.to_excel('F:/PythonProject/Wage_statistics_tkinter/GUI/wage_new.xls', sheet_name='Sheet1', index=True, header=True)

@@ -33,10 +33,10 @@ def wage_to_df(class_dict, dataFrame):
         2.  dataFrame: rd_excel获得的pandas读excel返回的数据类型
     @return: 无返回值
     '''        
-    dataFrame['上午值班次数'][dataFrame['姓名'] == class_dict['姓名']] = class_dict['上午值班次数']
-    dataFrame['下午值班次数'][dataFrame['姓名'] == class_dict['姓名']] = class_dict['下午值班次数']
-    dataFrame['加班小时数'][dataFrame['姓名'] == class_dict['姓名']] = class_dict['加班小时数']
-    dataFrame['总酬金'][dataFrame['姓名'] == class_dict['姓名']] = class_dict['总酬金']
+    dataFrame["上午值班次数"][dataFrame["姓名"] == class_dict["姓名"]] = class_dict["上午值班次数"]
+    dataFrame["下午值班次数"][dataFrame["姓名"] == class_dict["姓名"]] = class_dict["下午值班次数"]
+    dataFrame["加班小时数"][dataFrame["姓名"] == class_dict["姓名"]] = class_dict["加班小时数"]
+    dataFrame["总酬金"][dataFrame["姓名"] == class_dict["姓名"]] = class_dict["总酬金"]
 
 def pd_to_excel(dataFrame, path):
     '''
