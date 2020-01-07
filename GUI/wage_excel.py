@@ -32,12 +32,19 @@ def wage_to_df(class_dict, dataFrame):
         1. class_dict: Person类返回的字典数据
         2.  dataFrame: rd_excel获得的pandas读excel返回的数据类型
     @return: 无返回值
-    '''        
-    dataFrame["上午值班次数"][dataFrame["姓名"] == class_dict["姓名"]] = class_dict["上午值班次数"]
-    dataFrame["下午值班次数"][dataFrame["姓名"] == class_dict["姓名"]] = class_dict["下午值班次数"]
-    dataFrame["加班小时数"][dataFrame["姓名"] == class_dict["姓名"]] = class_dict["加班小时数"]
-    dataFrame["总酬金"][dataFrame["姓名"] == class_dict["姓名"]] = class_dict["总酬金"]
+    '''
+    # 这样的[][]赋值会出现SettingWithCopyWarning，最后出现问题，所以得换一种写法        
+    # dataFrame["上午值班次数"][dataFrame["姓名"] == class_dict["姓名"]] = class_dict["上午值班次数"]
+    # dataFrame["下午值班次数"][dataFrame["姓名"] == class_dict["姓名"]] = class_dict["下午值班次数"]
+    # dataFrame["加班小时数"][dataFrame["姓名"] == class_dict["姓名"]] = class_dict["加班小时数"]
+    # dataFrame["总酬金"][dataFrame["姓名"] == class_dict["姓名"]] = class_dict["总酬金"]
 
+    # 改变后的标准写法，得用loc[ , ]来写就没有问题
+    dataFrame.loc[class_dict["姓名"], "上午值班次数"] = class_dict["上午值班次数"]
+    dataFrame.loc[class_dict["姓名"], "下午值班次数"] = class_dict["下午值班次数"]
+    dataFrame.loc[class_dict["姓名"], "加班小时数"] = class_dict["加班小时数"]
+    dataFrame.loc[class_dict["姓名"], "总酬金"] = class_dict["总酬金"]
+        
 def pd_to_excel(dataFrame, path):
     '''
     @description: 将整理好的数据导出到excel里面去

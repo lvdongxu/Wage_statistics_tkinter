@@ -37,8 +37,8 @@ class Person:
         # 一些基本参数类似于列扩展，x方向的pad
         set_columnspan = 8
         set_padx = 4
-        # 标准UI涉及，但是需要修改，因为空间不够
-        # 上午班次数统计和UI组件定义
+        # # 标准UI涉及，但是需要修改，因为空间不够
+        # # 上午班次数统计和UI组件定义
         # tk.Label(_frame, text="上午值班次数", height=2, width=10, bg='red', fg='white').grid(row=0, column=0, columnspan=2*set_columnspan, padx=set_padx)
         # tk.Label(_frame, textvariable=self.morning_time, height=2, width=10).grid(row=1, column=0, columnspan=2*set_columnspan, padx=set_padx)
         # tk.Button(_frame, text='+1', command=self.morning_plus, height=2, width=4).grid(row=2, column=0, columnspan=set_columnspan)
@@ -168,17 +168,18 @@ class Person:
         cur_extra_time = self.extra_time.get()
         cur_wage = cur_morning_time * 75 + cur_afternoon_time * 100 + cur_extra_time * 50
         self.wage.set(cur_wage)
+        name = self.get_name
         # 类信息打印
         dict_key = ["姓名", "上午值班次数", "下午值班次数", "加班小时数", "总酬金"]
-        self.get_list = [self.get_name, self.morning_time.get(), self.afternoon_time.get(), self.extra_time.get(), self.wage.get()]
-        self._dict = dict(zip(dict_key, self.get_list))
+        get_list = [name, cur_morning_time, cur_afternoon_time, cur_extra_time, cur_wage]
+        self._dict = dict(zip(dict_key, get_list))
 
 if __name__ == '__main__':
     root = tk.Tk()
     root.title("文科处助管工资统计")
     
     # excel路径判断
-    lab_or_laptop  = 1
+    lab_or_laptop  = 0
     git_path       = '/Wage_statistics_tkinter/GUI/'
     lab_path       = 'F:/PythonProject'
     laptop_path    = 'F:/Wenkechu_Wage_GUI'
@@ -191,7 +192,7 @@ if __name__ == '__main__':
     name, dataFrame = we.rd_excel(rd_path)  
     print(dataFrame)  
     frame_list = []
-    for _name in name:
+    for _name in name[:4]:
         _frame = tk.LabelFrame(text=_name)
         _frame_class = Person(_frame, _name)
         frame_list.append(_frame_class)
@@ -205,7 +206,11 @@ if __name__ == '__main__':
         @return: 没有返回值
         '''
         for _frame_class in frame_list:
+            print(_frame_class.get_name)
+            print(_frame_class.morning_time.get())
+            print(_frame_class.afternoon_time.get())
             print(_frame_class._dict)
+            print(_frame_class.get_list)
             we.wage_to_df(_frame_class._dict, dataFrame)
         we.pd_to_excel(dataFrame, wr_path)
         print(dataFrame)
