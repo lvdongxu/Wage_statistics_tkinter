@@ -38,25 +38,6 @@ class Person:
         # 一些基本参数类似于列扩展，x方向的pad
         set_columnspan = 8
         set_padx = 4
-        # # 标准UI涉及，但是需要修改，因为空间不够
-        # # 上午班次数统计和UI组件定义
-        # tk.Label(_frame, text="上午值班次数", height=2, width=10, bg='red', fg='white').grid(row=0, column=0, columnspan=2*set_columnspan, padx=set_padx)
-        # tk.Label(_frame, textvariable=self.morning_time, height=2, width=10).grid(row=1, column=0, columnspan=2*set_columnspan, padx=set_padx)
-        # tk.Button(_frame, text='+1', command=self.morning_plus, height=2, width=4).grid(row=2, column=0, columnspan=set_columnspan)
-        # tk.Button(_frame, text='-1', command=self.morning_minus, height=2, width=4).grid(row=2, column=set_columnspan, columnspan=set_columnspan)
-        # # 下午班次数统计和UI组件定义
-        # tk.Label(_frame, text="下午值班次数", height=2, width=10, bg='blue', fg='white').grid(row=0, column=2*set_columnspan, columnspan=2*set_columnspan, padx=set_padx)
-        # tk.Label(_frame, textvariable=self.afternoon_time, height=2, width=10).grid(row=1, column=2*set_columnspan, columnspan=2*set_columnspan, padx=set_padx)
-        # tk.Button(_frame, text='+1', command=self.afternoon_plus, height=2, width=4).grid(row=2, column=2*set_columnspan, columnspan=set_columnspan)
-        # tk.Button(_frame, text='-1', command=self.afternoon_minus, height=2, width=4).grid(row=2, column=3*set_columnspan, columnspan=set_columnspan)
-        # # 加班次数统计和UI组件定义
-        # tk.Label(_frame, text="加班次数", height=2, width=10, bg='green', fg='white').grid(row=0, column=4*set_columnspan, columnspan=2*set_columnspan, padx=set_padx)
-        # tk.Label(_frame, textvariable=self.extra_time, height=2, width=10).grid(row=1, column=4*set_columnspan, columnspan=2*set_columnspan, padx=set_padx)
-        # tk.Button(_frame, text='+1', command=self.extra_plus, height=2, width=4).grid(row=2, column=4*set_columnspan, columnspan=set_columnspan)
-        # tk.Button(_frame, text='-1', command=self.extra_minus, height=2, width=4).grid(row=2, column=5*set_columnspan, columnspan=set_columnspan)
-        # # 总的工资
-        # tk.Label(_frame, text='总的工资', height=2, width=10, bg='black', fg='white').grid(row=0, column=6*set_columnspan, columnspan=4*set_columnspan, padx=set_padx)
-        # tk.Label(_frame, textvariable=self.wage , height=2, width=10, bg='black', fg='white').grid(row=2, column=6*set_columnspan, columnspan=4*set_columnspan, padx=set_padx)
 
         # 单行UI设计，为了满足人数要求
         # 上午班次数统计和UI组件定义
@@ -170,10 +151,6 @@ class Person:
         cur_wage = cur_morning_time * 75 + cur_afternoon_time * 100 + cur_extra_time * 50
         self.wage.set(cur_wage)
         name = self.get_name
-        # 类信息打印
-        # dict_key = ["姓名", "上午值班次数", "下午值班次数", "加班小时数", "总酬金"]
-        # get_list = [name, cur_morning_time, cur_afternoon_time, cur_extra_time, cur_wage]
-        # self._dict = dict(zip(dict_key, get_list))
         self._dict = {"姓名": name, "上午值班次数": cur_morning_time, "下午值班次数": cur_afternoon_time, "加班小时数": cur_extra_time, "总酬金": cur_wage}
 
 if __name__ == '__main__':
@@ -209,11 +186,6 @@ if __name__ == '__main__':
         '''
         new_dataFrame = dataFrame
         for _frame_class in frame_list:
-            print(_frame_class.get_name)
-            print(_frame_class.morning_time.get())
-            print(_frame_class.afternoon_time.get())
-            print(_frame_class._dict)
-            print(_frame_class.get_list)
             new_dataFrame = we.wage_to_df(_frame_class._dict, new_dataFrame)
         we.pd_to_excel(new_dataFrame, wr_path)
         print(dataFrame)
