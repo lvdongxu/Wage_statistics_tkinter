@@ -170,9 +170,10 @@ class Person:
         self.wage.set(cur_wage)
         name = self.get_name
         # 类信息打印
-        dict_key = ["姓名", "上午值班次数", "下午值班次数", "加班小时数", "总酬金"]
-        get_list = [name, cur_morning_time, cur_afternoon_time, cur_extra_time, cur_wage]
-        self._dict = dict(zip(dict_key, get_list))
+        # dict_key = ["姓名", "上午值班次数", "下午值班次数", "加班小时数", "总酬金"]
+        # get_list = [name, cur_morning_time, cur_afternoon_time, cur_extra_time, cur_wage]
+        # self._dict = dict(zip(dict_key, get_list))
+        self._dict = {"姓名": name, "上午值班次数": cur_morning_time, "下午值班次数": cur_afternoon_time, "加班小时数": cur_extra_time, "总酬金": cur_wage}
 
 if __name__ == '__main__':
     root = tk.Tk()
