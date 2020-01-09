@@ -44,7 +44,9 @@ def wage_to_df(class_dict, dataFrame):
     dataFrame.loc[class_dict["姓名"], "下午值班次数"] = class_dict["下午值班次数"]
     dataFrame.loc[class_dict["姓名"], "加班小时数"] = class_dict["加班小时数"]
     dataFrame.loc[class_dict["姓名"], "总酬金"] = class_dict["总酬金"]
-        
+    new_dataFrame = dataFrame
+    return new_dataFrame
+     
 def pd_to_excel(dataFrame, path):
     '''
     @description: 将整理好的数据导出到excel里面去

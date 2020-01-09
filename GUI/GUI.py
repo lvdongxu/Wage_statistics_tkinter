@@ -27,12 +27,13 @@ class Person:
         # 这里是上午班，下午班和加班次数的整数变量定义
         self.morning_time = tk.IntVar() 
         self.morning_time.set(0)
-        self.afternoon_time = tk.IntVar();
+        self.afternoon_time = tk.IntVar()
         self.afternoon_time.set(0)
-        self.extra_time = tk.IntVar();
+        self.extra_time = tk.IntVar()
         self.extra_time.set(0)
-        self.wage = tk.IntVar();
+        self.wage = tk.IntVar()
         self.wage.set(0)
+        self.wage_cal() # 在初始化必须要运行这句话，不然类字典在该助管没有值班的，button永远不被按的情况下永远都是一开始定义的空字典，
 
         # 一些基本参数类似于列扩展，x方向的pad
         set_columnspan = 8
@@ -180,7 +181,7 @@ if __name__ == '__main__':
     root.title("文科处助管工资统计")
     
     # excel路径判断
-    lab_or_laptop  = 0
+    lab_or_laptop  = 1
     git_path       = '/Wage_statistics_tkinter/GUI/'
     lab_path       = 'F:/PythonProject'
     laptop_path    = 'F:/Wenkechu_Wage_GUI'
@@ -206,14 +207,15 @@ if __name__ == '__main__':
         @param : 无输入参数
         @return: 没有返回值
         '''
+        new_dataFrame = dataFrame
         for _frame_class in frame_list:
             print(_frame_class.get_name)
             print(_frame_class.morning_time.get())
             print(_frame_class.afternoon_time.get())
             print(_frame_class._dict)
             print(_frame_class.get_list)
-            we.wage_to_df(_frame_class._dict, dataFrame)
-        we.pd_to_excel(dataFrame, wr_path)
+            new_dataFrame = we.wage_to_df(_frame_class._dict, new_dataFrame)
+        we.pd_to_excel(new_dataFrame, wr_path)
         print(dataFrame)
 
     final_button = tk.Button(root, text="最终统计", command=final_statistic, bg='Red', fg='white')

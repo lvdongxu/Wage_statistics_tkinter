@@ -6,6 +6,9 @@ class Application(tk.Frame):
         self.master = master
         self.pack()
         self.create_widgets()
+        self.testint = tk.IntVar()
+        # zero = "0"
+        self.testint.set(0)
 
     def create_widgets(self):
         self.hi_there = tk.Button(self)
@@ -22,4 +25,5 @@ class Application(tk.Frame):
 
 root = tk.Tk()
 app = Application(master=root)
+print(app.testint.get())
 app.mainloop()
