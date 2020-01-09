@@ -158,7 +158,7 @@ if __name__ == '__main__':
     root.title("文科处助管工资统计")
     
     # excel路径判断
-    lab_or_laptop  = 1
+    lab_or_laptop  = 0
     git_path       = '/Wage_statistics_tkinter/GUI/'
     lab_path       = 'F:/PythonProject'
     laptop_path    = 'F:/Wenkechu_Wage_GUI'
@@ -171,7 +171,7 @@ if __name__ == '__main__':
     name, dataFrame = we.rd_excel(rd_path)  
     print(dataFrame)  
     frame_list = []
-    for _name in name[:4]:
+    for _name in name:
         _frame = tk.LabelFrame(text=_name)
         _frame_class = Person(_frame, _name)
         frame_list.append(_frame_class)

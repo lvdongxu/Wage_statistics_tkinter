@@ -1,6 +1,6 @@
 {
     // "python.pythonPath": "F:\\Anaconda\\envs\\CS231\\python.exe",
-    "python.pythonPath": "E:\\Anaconda\\Install\\envs\\original\\python.exe",
+    "python.pythonPath": "F:\\Anaconda\\envs\\CS231\\python.exe",
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true
 }
